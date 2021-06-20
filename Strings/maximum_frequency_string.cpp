@@ -27,4 +27,20 @@ int main(){
     cout<<ans;
     return 0;
     // Complexity : O(N)
+
+    // using map complexity : O(N)
+    // string s = "aabbbccccdddddd";
+    // map<char, int> freq;
+    // for(int i = 0; i < s.length(); i++){
+    //     freq[s[i]] += 1;
+    // }
+    // int maxF = 0;
+    // char ans;
+    // for(auto i:freq){
+    //     if(i.second > maxF){
+    //         maxF = i.second;
+    //         ans = i.first;
+    //     }
+    // }
+    // cout<<"The maximum occuring character is: "<<ans<<" "<<maxF<<" times"<<endl;
 }
