@@ -37,9 +37,24 @@ void displayNode(node* head){
     }
     cout<<"NULL";
 }
+//corner case : 1 if you have to delete the head node
+void deleteAtHead(node * head){
+    node * todelete = head;
+    head = head->next;
 
+    delete todelete;
+}
 // node deletion
 void deletion(node* &head, int key){
+    //corner case 2: what if your linked list have no nodes
+    if(head == NULL){
+        return;
+    }
+    //corner case 3: what if your linked list have only one node
+    if(head->next == NULL){
+        deleteAtHead(head);
+        return;
+    }
     node* temp = head;
     while(temp->next->data != key){
         temp = temp->next;
