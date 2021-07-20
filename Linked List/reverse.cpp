@@ -48,7 +48,17 @@ node* reverse(node* &head){
     }
     return prevptr;
 }
+node* reverseRecursive(node* &head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
 
+    node* newNode = reverseRecursive(head->next);
+    head->next->next = head;
+    head->next = NULL;
+
+    return newNode;
+}
 int main()
 {
     node* head = NULL;
@@ -60,5 +70,7 @@ int main()
     
     node* newHead = reverse(head);
     displayNode(newHead);
+    // node* newHead = reverseRecursive(head);
+    // displayNode(newHead);
     return 0;
 }
