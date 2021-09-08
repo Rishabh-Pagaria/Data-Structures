@@ -66,6 +66,27 @@ node* mergeSorted(node* &head1, node* &head2){
     }
     return dummy->next;
 }
+//using recursion
+node* mergeRecursion(node* &head1, node* &head2){
+    node* result;
+    if(head1 == NULL){
+        return head2;
+    }
+    if(head2 == NULL){
+        return head1;
+    }
+    // link the 1st node to result and then attach that result node to function in order to perform recursion
+    if(head1->data < head2->data){
+        result = head1;
+        // now the coming node would link next to the result node
+        result->next = mergeRecursion(head1->next, head2);
+    }else{
+        result = head2;
+        result->next = mergeRecursion(head1, head2->next);
+    }
+    return result;
+}
+
 int main()
 {
    
@@ -83,7 +104,7 @@ int main()
     cout<<endl;
     displayNode(head2);
     cout<<endl;
-    node* newHead = mergeSorted(head1, head2);
+    node* newHead = mergeRecursion(head1, head2);
     displayNode(newHead);
     return 0;
 } 
