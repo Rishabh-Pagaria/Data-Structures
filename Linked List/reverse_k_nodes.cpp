@@ -33,6 +33,7 @@ void displayNode(node* head){
     }
     cout<<"NULL";
 }
+// Time complexity: O(n)
 node* reversekNodes(node* &head, int k){
     // base case
     if (!head)
