@@ -5,9 +5,10 @@
 #include <vector>
 using namespace std;
 
+//Using counting sort approach
 void sortColors(vector<int> nums) {
         int count0 = 0, count1 = 0, count2 = 0;
-        //Using counting sort approach
+        
         //counting each colors and storing there frequencies in the variables
         for(int i = 0; i < nums.size(); i++){
             if(nums[i] == 0){
@@ -36,3 +37,29 @@ void sortColors(vector<int> nums) {
         // complexity would be O(N) + O(N) = O(2N)
        
 };
+
+//Optimal apprach using dutch national flag algorithm
+void sortColorsApproach2(vector<int>& nums) {
+        int lo = 0, mid = 0, hi = nums.size()-1;
+        
+        while(mid <= hi){
+            switch(nums[mid]){
+                //these 3 steps are very much important
+                //Time complexity O(N)
+                case 0:
+                    swap(nums[lo++], nums[mid++]);
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    swap(nums[mid], nums[hi--]);
+                    break;
+            }
+        }
+        int doubt = 1;
+        if(doubt){
+            cout<<"https://www.youtube.com/watch?v=oaVa-9wmpns&list=PLgUwDviBIf0rPG3Ictpu74YWBQ1CaBkm2";
+        }
+       
+    }
