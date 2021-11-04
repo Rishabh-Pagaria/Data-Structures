@@ -1,4 +1,5 @@
 Problem: Find the maximum some of the subarray
+If interviewr asks this question tell him the answer appraoch by apprach don't directly jump to optmised apprach until and unless he asks
 This is a brute force technique
 Time Complexity : O(N3)
 
@@ -21,6 +22,32 @@ int main(){
             for(int k = i; k <= j; k++){
                 sum += a[k];
             }
+            maxSub = max(maxSub, sum);
+            
+        }
+    }
+    cout<<maxSub;
+    return 0;
+}
+*******************************************************************************************************
+Approach 2 : Time Complexity O(N2)
+
+#include <iostream>
+#include <climits>
+using namespace std;
+
+int main(){
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int maxSub = INT_MIN;  
+    for(int i = 0; i < n; i++){
+        int sum = 0;
+        for(int j = i; j < n; j++){
+            sum += a[j];
             maxSub = max(maxSub, sum);
             
         }
