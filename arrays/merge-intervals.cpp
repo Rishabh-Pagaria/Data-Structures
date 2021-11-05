@@ -2,6 +2,9 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
+//Time Complexity : O( Nlog(N) )
+//O(log(N)) because we are sorting the array first
+//O(N) because of linear complexity
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
         //this vector would be used as to return the final answer
         vector<vector<int>> mergeIntervals;
