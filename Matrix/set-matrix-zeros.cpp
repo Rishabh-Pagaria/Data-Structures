@@ -5,6 +5,8 @@ using namespace std;
 int main() {
     // The matrix has been hard coded here 
     //if you want to take input from user you can do it
+    // Time complexity O(row+col) + O(row+col)
+    // Space complexity O(row+col)
     vector<vector<int>> setZeroes = {{0,1,1},{1,0,1},{1,1,1}};
     int row = setZeroes.size();
     int col = setZeroes[0].size();
