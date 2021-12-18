@@ -23,6 +23,7 @@ bool isPowerOfTwo(int n) {
         if(ans == n){
             return true;
         }
+        //this below condition is needed beacause the number 2^32 is big enough to be stored in int. As at last of the loop the ans would be equal to 2^31 ans as we are multiplying extra 2 which would be 2^32 which is not in int i.e. why we are divding it by 2 
         if(ans < INT_MAX/2){
             ans = ans * 2;   
         }
