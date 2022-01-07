@@ -1,0 +1,95 @@
+Problem Statement
+You have been given a sorted array/list ARR consisting of ‘N’ elements. You are also given an integer ‘K’.
+Now the array is rotated at some pivot point unknown to you. For example, if ARR = [ 1, 3, 5, 7, 8]. Then after rotating ARR at index 3, the array will be ARR = [7, 8, 1, 3, 5].
+Now, your task is to find the index at which ‘K’ is present in ARR.
+
+Note :
+1. If ‘K’ is not present in ARR then print -1.
+2. There are no duplicate elements present in ARR. 
+3. ARR can be rotated only in the right direction.
+
+For example, if ARR = [12, 15, 18, 2, 4] and K = 2, then the position at which K is present in the array is 3 (0-indexed)
+
+
+Approach 1 : Time Complexity O(logN)
+
+int pivot(vector<int> arr, int n){
+    int st = 0;
+    int en = n - 1;
+    int mid = st + (en-st)/2;
+    while(st < en){
+        if(arr[mid] >= arr[0]){
+            st = mid + 1;
+        }else{
+            en = mid;
+        }
+        mid = st + (en-st)/2;
+    }
+    return st;
+}
+int binarySearch(vector<int>& arr, int start, int end, int key){
+    int st = start;
+    int en = end;
+    int mid = st + (en-st)/2;
+    while(st <= en){
+        if(arr[mid] == key){
+            return mid;
+        }
+        else if(arr[mid] > key){
+            en = mid - 1;
+        }
+        else{
+            st = mid + 1;
+        }
+        mid = st + (en-st)/2;
+    }
+    return -1;
+}
+
+int findPosition(vector<int>& arr, int n, int k)
+{
+    int st = 0;
+    int en = n - 1;
+    
+    //Finding pivot element i.e. smallest element
+    int pivotEle = pivot(arr, n);
+    if(k >= arr[pivotEle] && k <= arr[en]){
+        return binarySearch(arr, pivotEle, en, k);
+    }else{
+        return binarySearch(arr, st, pivotEle - 1, k);
+    }
+}
+
+Approach 2: Time Complexity O(logN)
+
+In this approach we are finding out the middle element and checking if the left and right part are sorted and then making conditions accordingly
+int findPosition(vector<int>& arr, int n, int k)
+{
+    int st = 0;
+    int en = n - 1;
+    while(st <= en){
+        int mid = st + (en-st)/2;
+        if(arr[mid] == k){
+            return mid;
+        }
+        //checking if the left part is sorted
+        if(arr[st] <= arr[mid]){
+            //checking if the k(i.e. target) lies in left part
+            if(k >= arr[st] && k <= arr[mid]){
+                en = mid - 1;
+            }else{
+                st = mid + 1;
+            }
+        }
+        //checking if the right part is sorted
+        else{
+            //checking if the k(i.e. target) lies in right part
+            if(k >= arr[mid] && k <= arr[en]){
+                st = mid + 1;
+            }else{
+                en = mid - 1;
+            }
+        }
+    }
+    return -1;
+}
